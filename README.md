@@ -290,3 +290,80 @@ Enabling the firewall and allowing port 8080 to access the tomcat
 # firewall-cmd --zone=public --add-port=8080/tcp --permanent
 # firewall-cmd --reload
 ```
+
+<h2 align="center">CODE BUILD & DEPLOY (app01)</h2>
+
+Download Source code
+```
+# git clone -b main https://github.com/Amit-unchartered/VProfile_Project.git
+```
+Update configuration
+```
+# cd Manual_Provisioning
+# vim src/main/resources/application.properties
+# Update file with backend server details
+```
+***Build code***
+***Run below command inside the repository (VProfile_Project)***
+```
+# mvn install
+```
+Deploy artifact
+```
+# systemctl stop tomcat
+# rm -rf /usr/local/tomcat/webapps/ROOT*
+# cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+# systemctl start tomcat
+# chown tomcat.tomcat /usr/local/tomcat/webapps -R
+# systemctl restart tomcat
+```
+
+
+<h2 align="center">5. NGINX SETUP</h2>
+
+Login to the Nginx vm
+```
+$ vagrant ssh web01
+$ sudo -i
+```
+Verify Hosts entry, if entries missing update the it with IP and hostnames
+```
+# cat /etc/hosts
+```
+Update OS with latest patches
+```
+# apt update
+# apt upgrade
+```
+Install nginx
+```
+# apt install nginx -y
+```
+Create Nginx conf file
+```
+# vi /etc/nginx/sites-available/vproapp
+```
+Update with below content
+```
+upstream vproapp {
+server app01:8080;
+}
+server {
+listen 80;
+location / {
+proxy_pass http://vproapp;
+}
+}
+```
+Remove default nginx conf
+```
+# rm -rf /etc/nginx/sites-enabled/default
+```
+Create link to activate website
+```
+# ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+```
+Restart Nginx
+```
+# systemctl restart nginx
+```
