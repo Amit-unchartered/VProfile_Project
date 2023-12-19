@@ -45,9 +45,7 @@ If vm setup stops in the middle run **_“vagrant up”_** command again.
 4. Tomcat (Application SVC)  
 5. Nginx (Web SVC)
 
-<center>
- **1.MYSQL Setup**
-</center>
+<h2 align="center">1. MYSQL Setup</h2>
 
 Login to the db vm
 ```
@@ -70,8 +68,10 @@ Install Maria DB Package
 # yum install git mariadb-server -y
 ```  
 Starting & enabling mariadb-server  
-```# systemctl start mariadb```  
-```# systemctl enable mariadb```  
+```
+# systemctl start mariadb
+# systemctl enable mariadb
+```  
 RUN mysql secure installation script.
 ```
 # mysql_secure_installation
