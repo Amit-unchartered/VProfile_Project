@@ -19,7 +19,8 @@ $ vagrant plugin install vagrant-hostmanager
 1. Clone source code.
 2. Cd into the repository.
 3. Switch to the main branch.
-4. cd into Manual_provisioning
+4. cd into vagrant/Manual_Provisioning
+
 Bring up vm’s
 ```
 $ vagrant up
@@ -50,6 +51,7 @@ If vm setup stops in the middle run **_“vagrant up”_** command again.
 Login to the db vm
 ```
 $ vagrant ssh db01
+$ sudo -i
 ```
 Verify Hosts entry, if entries missing update the it with IP and hostnames  
 ```
@@ -113,7 +115,7 @@ mysql> exit;
 Download Source code & Initialize Database.
 ```
 # git clone -b main https://github.com/Amit-unchartered/VProfile_Project.git
-# cd Manual_Provisioning
+# cd VProfile_Project
 # mysql -u root -padmin123 accounts < src/main/resources/db_backup.sql
 # mysql -u root -padmin123 accounts
 mysql> show tables;
@@ -299,7 +301,7 @@ Download Source code
 ```
 Update configuration
 ```
-# cd Manual_Provisioning
+# cd VProfile_Project
 # vim src/main/resources/application.properties
 # Update file with backend server details
 ```
