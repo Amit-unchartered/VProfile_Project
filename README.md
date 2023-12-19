@@ -25,5 +25,6 @@ Bring up vm’s
 $ vagrant up
 ```
 **NOTE**: Bringing up all the vm’s may take a long time based on various factors.
-If vm setup stops in the middle run **_“vagrant up”_** command again.
+If vm setup stops in the middle run **_“vagrant up”_** command again.  
+
 **INFO**: All the vm’s hostname and /etc/hosts file entries will be automatically updated
