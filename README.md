@@ -32,19 +32,22 @@ If vm setup stops in the middle run **_“vagrant up”_** command again.
 
 ### PROVISIONING:
 **Services**
+```
 1. Nginx => Web Service
 2. Tomcat => Application Server
 3. RabbitMQ => Broker/Queuing Agent
 4. Memcache => DB Caching
 5. ElasticSearch => Indexing/Search service
 6. MySQL => SQL Database
-
+```
 #### Setup should be done in below mentioned order
+```
 1. MySQL (Database SVC)  
 2. Memcache (DB Caching SVC)  
 3. RabbitMQ (Broker/Queue SVC)  
 4. Tomcat (Application SVC)  
 5. Nginx (Web SVC)
+```
 
 <h2 align="center">1. MYSQL Setup</h2>
 
